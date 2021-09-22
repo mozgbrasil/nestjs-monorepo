@@ -25,6 +25,15 @@
       "compilerOptions": {
         "tsConfigPath": "apps/ecommerce-app/tsconfig.app.json"
       }
+    },
+    "mjv-library": {
+      "type": "library",
+      "root": "libs/mjv-library",
+      "entryFile": "index",
+      "sourceRoot": "libs/mjv-library/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/mjv-library/tsconfig.lib.json"
+      }
     }
   }
 }
