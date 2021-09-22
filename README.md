@@ -4,7 +4,9 @@
 
 # nestjs-monorepo
 
-## Create Project
+- https://nestjs.com/
+
+- https://docs.nestjs.com/
 
 ```
 nest --help
@@ -16,16 +18,10 @@ yarn add @types/joi @types/sequelize @types/js-yaml @types/cron @types/cache-man
 
 nest generate app ecommerce-app
 
+nest g resource cats
+
 nest generate resource users
 ```
-
-## Links
-
-- https://nestjs.com/
-
-- https://docs.nestjs.com/guards
-- https://docs.nestjs.com/security/authentication
-- https://docs.nestjs.com/guards#putting-it-all-together
 
 - https://courses.nestjs.com/
 - https://github.com/nestjs/nest/tree/master/sample
