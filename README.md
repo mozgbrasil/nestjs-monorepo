@@ -4,7 +4,7 @@
 
 # nestjs-monorepo
 
-2409-095221
+2409-101702
 
 - https://nestjs.com/
 
@@ -42,8 +42,11 @@ nest g controller health
 - http://localhost:3003/
 - http://localhost:3003/api/
 
-- https://nestjs-labs.herokuapp.com/
-- https://nestjs-labs.herokuapp.com/api/
+- https://nestjs-monorepo.vercel.app/
+- https://nestjs-monorepo.vercel.app/api/
+
+- https://nestjs-monorepo.herokuapp.com/
+- https://nestjs-monorepo.herokuapp.com/api/
 
 ```
 curl -X POST -H "Content-Type: application/json" -d '{"name":"jon","age":11,"breed":"bred"}' http://localhost:3003/cats
