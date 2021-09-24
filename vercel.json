@@ -1,5 +1,7 @@
 {
   "version": 2,
-  "builds": [{ "src": "dist/main.js", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "dist/main.js" }]
+  "builds": [
+    { "src": "dist/apps/nestjs-monorepo/main.js", "use": "@vercel/node" }
+  ],
+  "routes": [{ "src": "/(.*)", "dest": "dist/apps/nestjs-monorepo/main.js" }]
 }
