@@ -10,9 +10,7 @@ import {
   UseInterceptors,
   UseFilters,
   ForbiddenException,
-  UsePipes,
   UseGuards,
-  SetMetadata,
 } from '@nestjs/common';
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
@@ -20,12 +18,23 @@ import { UpdateCatDto } from './dto/update-cat.dto';
 import { LoggingInterceptor } from '../core/interceptors/logging.interceptor';
 import { Cat } from './interfaces/cat.interface';
 import { HttpExceptionFilter } from '../exceptions/http-exception.filter';
-import { JoiValidationPipe } from '../common/pipes/joi-validation.pipe';
 import { RolesGuard } from '../common/guards/roles.guard';
 import { Roles } from '../common/decorators/roles.decorator';
+import {
+  ApiBasicAuth,
+  ApiBearerAuth,
+  ApiHeader,
+  ApiTags,
+} from '@nestjs/swagger';
+import { Public } from '../auth/guards/jwt-auth.guard';
 
+// @TODO: Não vi efeito
+// @ApiBasicAuth()
+// @ApiBearerAuth()
+//
 // @UseFilters(new HttpExceptionFilter())
 // @UseInterceptors(LoggingInterceptor)
+@ApiTags('cats')
 @Controller('cats')
 @UseGuards(RolesGuard)
 export class CatsController {
@@ -42,6 +51,7 @@ export class CatsController {
   }
 
   @Get()
+  // @Public()
   async findAll(): Promise<Cat[]> {
     // throw new ForbiddenException();
     return this.catsService.findAll();

@@ -1,17 +1,15 @@
 import { HttpAdapterHost, NestFactory } from '@nestjs/core';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { AppModule } from './app.module';
-import { NestExpressApplication } from '@nestjs/platform-express';
 import { Request, Response, NextFunction } from 'express';
 // import { RolesGuard } from './auth/guards/roles.guard';yar
 import { HttpExceptionFilter } from './common/filters/http-exception.filter';
 import { AllExceptionsFilter } from './common/filters/all-exceptions.filter';
 import { ValidationPipe } from './common/pipes/validation.pipe';
-import helmet from 'helmet';
-import * as csurf from 'csurf';
+import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 export function logger(req: Request, res: Response, next: NextFunction) {
-  console.table([{ logger_req: req, logger_res: res }]);
+  // console.table([{ logger_req: req, logger_res: res }]);
   console.log(`Logger Main: `);
   next();
 }
@@ -37,8 +35,10 @@ async function bootstrap() {
   //
 
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    // .addBasicAuth()
+    // .addBearerAuth()
+    .setTitle('MJV API')
+    .setDescription('The MJV API')
     .setVersion('1.0')
     .addTag('cats')
     .build();
@@ -56,7 +56,7 @@ async function bootstrap() {
 
   //
 
-  // app.useGlobalPipes(new ValidationPipe()); // validate POST
+  app.useGlobalPipes(new ValidationPipe()); // validate POST
 
   //
 
@@ -69,4 +69,25 @@ async function bootstrap() {
 
   //
 }
+
 bootstrap();
+
+async function bootstrap_microservice() {
+  const app = await NestFactory.createMicroservice<MicroserviceOptions>(
+    AppModule,
+    {
+      transport: Transport.RMQ,
+      options: {
+        urls: [process.env.AMQP_URL],
+        queue: 'cats_queue',
+        queueOptions: {
+          durable: false,
+        },
+      },
+    },
+  );
+
+  await app.listen();
+}
+
+// bootstrap_microservice();
