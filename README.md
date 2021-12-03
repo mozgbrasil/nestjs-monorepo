@@ -2,7 +2,7 @@
 
 ![valid XHTML][checkmark]
 
-# nestjs-monorepo
+# nestjs-monorepo 👉️
 
 - https://nestjs.com/
 
